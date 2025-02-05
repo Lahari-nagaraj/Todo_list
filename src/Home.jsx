@@ -19,12 +19,21 @@ function Home() {
 
   const handleEdit = (id) => {
     axios
-      .put(`http://localhost:3001/update/${id}`)
+      .put('http://localhost:3001/update/'+id)
       .then(result => {
         location.reload()
       })
       .catch(err => console.log(err));
   };
+
+  const handleDelete = (id) => {
+    axios
+      .delete("http://localhost:3001/delete/" + id)
+      .then(result => {
+        location.reload()
+      })
+      .catch((err) => console.log(err))
+  }
 
   return (
     <div className="home">
@@ -47,7 +56,7 @@ function Home() {
             </div>
             <div>
               <span>
-                <BsFillTrashFill className="icon" />
+                <BsFillTrashFill className="icon" onClick= {() => handleDelete(todo._id)} />
               </span>
             </div>
           </div>
